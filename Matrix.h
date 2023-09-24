@@ -61,6 +61,12 @@ public:
     Matrix multiply(const Matrix& other) const;
 
     /*
+     * Strassen multiplication
+     * function
+     */
+    Matrix strassenMultiply(const Matrix& other) const;
+
+    /*
      * Addition of matrices
      */
     Matrix add(const Matrix& other) const;
@@ -94,6 +100,16 @@ public:
      * Transpose matrix
      */
     Matrix transpose() const;
+
+    /*
+     * Swap rows
+     */
+    void swapRows(unsigned int row1, unsigned int row2) const;
+
+    /*
+     * Swap columns
+     */
+    void swapCols(unsigned int col1, unsigned int col2) const;
 
     /*
      * performs Gaussian elimination to transform the matrix
@@ -147,7 +163,7 @@ public:
     /*
      * calculate the inverse of a matrix using Gaussian Elimination
      */
-    Matrix inverseGaussianElimination() const;
+    Matrix inverseGaussianElimination();
 
     /*
      * DESTRUCTOR

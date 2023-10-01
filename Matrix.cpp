@@ -109,7 +109,7 @@ void Matrix::print() const {
 Matrix Matrix::fromFile(const char *filename) {
     // get matrix from a file
 
-
+    return Matrix();
 }
 
 Matrix Matrix::multiply(const Matrix& other) const {
@@ -182,7 +182,7 @@ Matrix Matrix::gaussianEliminationREF() const {
             if (data[row][col] != 0.0f) break;
         }
 
-        if (row = this->rows) continue;
+        if (row == this->rows) continue;
 
         swapRows(row, currentRow);
 
@@ -200,6 +200,7 @@ Matrix Matrix::gaussianEliminationREF() const {
 
         currentRow++;
     }
+    return *this;
 }
 
 void Matrix::swapRows(unsigned int row1, unsigned int row2) const {
@@ -229,7 +230,7 @@ Matrix Matrix::gaussianEliminationRREF() const {
             if (data[row][col] != 0.0f) break;
         }
 
-        if (row = this->rows) continue;
+        if (row == this->rows) continue;
 
         swapRows(row, currentRow);
 
@@ -247,6 +248,7 @@ Matrix Matrix::gaussianEliminationRREF() const {
 
         currentRow++;
     }
+    return *this;
 }
 
 Matrix Matrix::augment(const Matrix &augment) const {
@@ -441,6 +443,17 @@ Matrix Matrix::add(const Matrix &other, Matrix &result) const {
     }
 
     return result;
+}
+
+void Matrix::setValues(double **values) {
+
+    // set values of the matrix
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            data[i][j] = values[i][j];
+        }
+    }
+
 }
 
 

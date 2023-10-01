@@ -55,6 +55,11 @@ public:
     Matrix fromFile(const char* filename);
 
     /*
+     * Set matrix values
+     */
+    void setValues(double** values);
+
+    /*
      * Multiplication of matrices
      * function
      */

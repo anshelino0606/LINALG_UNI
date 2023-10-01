@@ -116,8 +116,8 @@ Matrix Matrix::multiply(const Matrix& other) const {
     return *this * other;
 }
 
-Matrix Matrix::add(const Matrix& other) const {
-    return *this + other;
+void Matrix::add(const Matrix& other) const {
+    *this + other;
 }
 
 Matrix Matrix::subtract(const Matrix &other) const {
@@ -420,6 +420,23 @@ if (cols != other.rows) {
     for (int i = newSize; i < rows; ++i) {
         for (int j = newSize; j < cols; ++j) {
             result.data[i][j] = c22.data[i - newSize][j - newSize];
+        }
+    }
+
+    return result;
+}
+
+Matrix Matrix::add(const Matrix &other, Matrix &result) const {
+
+    // check if matrices are of the same size
+    if (rows != other.rows || cols != other.cols) {
+        throw std::invalid_argument("ERROR::DIFFERENT SIZED MATRICES");
+    }
+
+    // add two matrices (to the current)
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < other.cols; ++j) {
+            result.data[i][j] = data[i][j] + other.data[i][j];
         }
     }
 

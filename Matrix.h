@@ -69,7 +69,12 @@ public:
     /*
      * Addition of matrices
      */
-    Matrix add(const Matrix& other) const;
+    void add(const Matrix& other) const;
+
+    /*
+     * Addition of matrices (result is new matrix)
+     */
+    Matrix add(const Matrix& other, Matrix& result) const;
 
     /*
      * Subtraction of matrices
@@ -164,6 +169,11 @@ public:
      * calculate the inverse of a matrix using Gaussian Elimination
      */
     Matrix inverseGaussianElimination();
+
+    /*
+     * OPERATORS
+     */
+    Matrix& operator=(const Matrix& other);
 
     /*
      * DESTRUCTOR

@@ -181,6 +181,11 @@ public:
     Matrix inverseGaussianElimination();
 
     /*
+     * clearing up memory
+     */
+    void clear();
+
+    /*
      * OPERATORS
      */
     Matrix& operator=(const Matrix& other);

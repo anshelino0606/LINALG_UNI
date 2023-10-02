@@ -4,6 +4,8 @@
 
 #ifndef LINALG_UNI_MATRIX_H
 #define LINALG_UNI_MATRIX_H
+#include <fstream>
+#include <iostream>
 
 
 class Matrix {
@@ -191,6 +193,7 @@ public:
     Matrix& operator=(const Matrix& other);
     bool operator==(const Matrix& other) const;
     friend bool operator!=(const Matrix& other1, const Matrix& other2);
+    friend std::ostream& operator << (std::ostream& os, const Matrix& matrix);
 
     /*
      * DESTRUCTOR

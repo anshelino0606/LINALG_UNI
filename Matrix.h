@@ -30,6 +30,11 @@ public:
      */
 
     /*
+     * allocate memory for new matrix
+     */
+    void allocateMemory(unsigned int row, unsigned int col);
+
+    /*
      * Identity matrix
      */
     Matrix identity(unsigned int size);

@@ -483,6 +483,17 @@ Matrix &Matrix::operator=(const Matrix &other) {
     return *this;
 }
 
+void Matrix::allocateMemory(unsigned int row, unsigned int col) {
+
+    data = new double*[row];
+    for (int i = 0; i < row; ++i) {
+        data[i] = new double[col];
+    }
+
+    rows = row;
+    cols = col;
+}
+
 
 
 

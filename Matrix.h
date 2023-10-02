@@ -189,6 +189,8 @@ public:
      * OPERATORS
      */
     Matrix& operator=(const Matrix& other);
+    bool operator==(const Matrix& other) const;
+    friend bool operator!=(const Matrix& other1, const Matrix& other2);
 
     /*
      * DESTRUCTOR

@@ -502,6 +502,26 @@ void Matrix::clear() {
 
 }
 
+bool Matrix::operator==(const Matrix& other) const {
+    if (rows != other.rows || cols != other.cols) {
+        return false;
+    }
+
+    // check if matrices are equal
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < other.cols; ++j) {
+            if (data[i][j] != other.data[i][j]) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+bool operator!=(const Matrix& other1, const Matrix& other2) {
+    return !(other1 == other2);
+}
 
 
 

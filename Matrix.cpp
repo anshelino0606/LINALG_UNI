@@ -523,6 +523,11 @@ bool operator!=(const Matrix& other1, const Matrix& other2) {
     return !(other1 == other2);
 }
 
+std::ostream& operator << (std::ostream& os, const Matrix& matrix) {
 
+    matrix.print();
+    return os;
+
+}
 
 

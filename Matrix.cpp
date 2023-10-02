@@ -457,25 +457,19 @@ void Matrix::setValues(double **values) {
 }
 
 Matrix &Matrix::operator=(const Matrix &other) {
-    // overload =
     if (this == &other) {
         return *this;
     }
 
     // delete old data
-    for (int i = 0; i < rows; ++i) {
-        delete[] data[i];
-    }
+    this->clear();
 
     // =
     rows = other.rows;
     cols = other.cols;
 
     // allocate new data
-    data = new double*[rows];
-    for (int i = 0; i < rows; ++i) {
-        data[i] = new double[cols];
-    }
+    this->allocateMemory(rows, cols);
 
     // copy data
     setValues(other.data);

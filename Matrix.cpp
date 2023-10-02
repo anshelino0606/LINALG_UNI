@@ -494,6 +494,20 @@ void Matrix::allocateMemory(unsigned int row, unsigned int col) {
     cols = col;
 }
 
+void Matrix::clear() {
+
+    // clear matrix
+    for (int i = 0; i < rows; ++i) {
+        delete[] data[i];
+    }
+    delete[] data;
+
+    rows = 0;
+    cols = 0;
+    data = nullptr;
+
+}
+
 
 
 

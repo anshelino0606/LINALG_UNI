@@ -17,6 +17,8 @@ public:
 
     Matrix();
     Matrix(unsigned int rows, unsigned int cols);
+    // copy constructor
+    Matrix(const Matrix& other);
 
     /*
      * OPERATORS
@@ -192,9 +194,24 @@ public:
      */
     Matrix& operator=(const Matrix& other);
     bool operator==(const Matrix& other) const;
+    /*
+     * postfix increment operator
+     * - first return the value, then increment
+     */
+    void operator++();
+    /*
+     * suffix increment operator
+     * - first increment, then return the value
+     */
     friend bool operator!=(const Matrix& other1, const Matrix& other2);
-    friend std::ostream& operator << (std::ostream& os, const Matrix& matrix);
+    friend void operator << (std::ostream& os, const Matrix& matrix); // disabled chaining
 
+    // operator []
+    // - returns a pointer to the row
+    double* operator[](unsigned int row) const;
+    // operator ()
+    // - returns the value at the specified position
+    double operator()(unsigned int row, unsigned int col) const;
     /*
      * DESTRUCTOR
      */

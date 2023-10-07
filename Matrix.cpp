@@ -16,6 +16,11 @@ Matrix::Matrix(unsigned int rows, unsigned int cols)
     for (int i = 0; i < rows; ++i) {
         data[i] = new double[cols];
     }
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; j++) {
+            data[i][j] = 0;
+        }
+    }
 }
 
 Matrix Matrix::operator+(const Matrix& other) const {
@@ -26,12 +31,13 @@ Matrix Matrix::operator+(const Matrix& other) const {
     Matrix result(rows, cols);
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
-            result.data[i][j] = data[i][j] + other.data[i][j];
+            result.data[i][j] = this->data[i][j] + other.data[i][j];
         }
     }
 
     return result;
 }
+
 
 Matrix Matrix::operator-(const Matrix& other) const {
     if (rows != other.rows || cols != other.cols) {
@@ -116,9 +122,9 @@ Matrix Matrix::multiply(const Matrix& other) const {
     return *this * other;
 }
 
-void Matrix::add(const Matrix& other) const {
-    *this + other;
-}
+//void Matrix::add(const Matrix& other) const {
+//    *this + other;
+//}
 
 Matrix Matrix::subtract(const Matrix &other) const {
     return *this - other;
@@ -355,10 +361,6 @@ Matrix Matrix::inverseGaussianElimination() {
 }
 
 Matrix::~Matrix() {
-    for (int i = 0; i < rows; ++i) {
-        delete[] data[i];
-    }
-    delete[] data;
 }
 
 Matrix Matrix::strassenMultiply(const Matrix &other) const {
@@ -461,9 +463,6 @@ Matrix &Matrix::operator=(const Matrix &other) {
         return *this;
     }
 
-    // delete old data
-    this->clear();
-
     // =
     rows = other.rows;
     cols = other.cols;
@@ -523,11 +522,46 @@ bool operator!=(const Matrix& other1, const Matrix& other2) {
     return !(other1 == other2);
 }
 
-std::ostream& operator << (std::ostream& os, const Matrix& matrix) {
+void operator << (std::ostream& os, const Matrix& matrix) {
 
     matrix.print();
-    return os;
+//    return os;
 
 }
+
+Matrix::Matrix(const Matrix &other) {
+
+    // copy constructor
+    rows = other.rows;
+    cols = other.cols;
+
+    // allocate new memory
+    this->allocateMemory(rows, cols);
+
+    // copy data
+    setValues(other.data);
+
+}
+
+void Matrix::operator++() {
+
+    // increment all elements of the matrix
+    // first assign then increment
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            data[i][j] += 1;
+        }
+    }
+
+}
+
+double* Matrix::operator[](unsigned int row) const {
+    return data[row];
+}
+
+double Matrix::operator()(unsigned int row, unsigned int col) const {
+    return data[row][col];
+}
+
 
 
